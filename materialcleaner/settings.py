@@ -130,5 +130,12 @@ LOCALE_PATHS = (
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
 STATIC_URL = '/static/'
+
+# Managing storage user-upload files
+# (must be different from STATIC_ROOT or STATIC_URL due to security risks (if you are accepting
+# uploaded content from untrusted users)
+# No "/" at the begining (with "/" issue with open() built-in function)
+# https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-MEDIA_ROOT
+MEDIA_ROOT = 'poster/media/upload/'
+MEDIA_URL = ''

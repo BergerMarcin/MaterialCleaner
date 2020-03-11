@@ -113,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/dev/topics/i18n/translation/#how-django-discovers-language-preference
 LANGUAGES = (
     ('en', _('English')),
-    ('pl', _('Polish')),
+    ('pl', _('polski')),
 )
 # Set the default language (recommended English)
 # https://docs.djangoproject.com/en/3.0/topics/i18n/

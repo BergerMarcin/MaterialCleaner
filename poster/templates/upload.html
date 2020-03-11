@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block page_title %}PIC pobieranie{% endblock %}
+
+{% block content %}
+  <h2>Hello my friend in PIC app!</h2>
+  <h3>Proszę pobierz zdjęcia</h3>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">POBIERZ</button>
+  </form>
+{% endblock %}

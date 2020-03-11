@@ -10,6 +10,10 @@ from .forms import BaseForm, PhotoUploadForm
 
 # Create your views here.
 
+# TODO: after each change User or UserDetails and Login checking user if
+#  user belongs to proper UserGroup (regular / inactive_regular) acc. active status
+
+
 class IndexBaseWithLanguageChoiceView(View):
     '''
     Index View = Base View with language form choice at template base.html

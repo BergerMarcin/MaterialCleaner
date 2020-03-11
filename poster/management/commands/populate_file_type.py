@@ -13,10 +13,10 @@ FILE_TYPE = (
 
 
 class Command(BaseCommand):
-    help = 'Fill-in picture file types into FileType model/DB'
+    help = 'Step 1 @ creating new DB.  Fill-in picture file types into FileType model/DB'
     
     def handle(self, *args, **options):
         for ft in FILE_TYPE:
             FileType.objects.create(type=ft)
         
-        self.stdout.write(f"FileType model/DB was filled with picture type files from {FILE_TYPE}")
+        self.stdout.write(f"SUCCESS! FileType model/DB was filled with picture type files from {FILE_TYPE}")

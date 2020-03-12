@@ -4,7 +4,7 @@ from django.views import View
 from django.views.generic import FormView
 from django.utils import translation
 from materialcleaner.settings import LANGUAGES, LANGUAGE_CODE
-from .files_operations import handle_uploaded_files
+from .uploaded_files_operations import handle_uploaded_photo_files
 from .forms import BaseForm, PhotoUploadForm
 
 
@@ -54,15 +54,15 @@ class PhotoUploadView(FormView):
         files = request.FILES.getlist('files')
         if form.is_valid():
             for i, file in enumerate(files):
-                files_written = handle_uploaded_files(file)
+                files_written = handle_uploaded_photo_files(file)
                 if files_written:
                     # TODO: save file_hashed to the base
                     # photo = Photo(title = form.cleaned_data['title'] + '_' + str(i),
                     #               user = User.username,
                     #               description='',
                     #               taken_localisation='',
-                    #               file_name=files_written['file_name'],
-                    #               pathname=files_written['pathname'],
+                    #               file_name_hashed=files_written['file_name_hashed'],
+                    #               pathname_loaded=files_written['pathname_loaded'],
                     #               file_type=files_written['file_type'])
                     # print(photo)
                     # photo.save()

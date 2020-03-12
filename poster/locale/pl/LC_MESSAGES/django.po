@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-11 12:50+0100\n"
+"POT-Creation-Date: 2020-03-12 09:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
 #: poster/forms.py:12
 msgid "Language"
 msgstr "Język"
@@ -26,6 +27,142 @@ msgstr "Język"
 #: poster/forms.py:12
 msgid "Choose language"
 msgstr "Wybierz język"
+
+#: poster/models.py:30
+msgid "Phone number"
+msgstr "Numer telefonu"
+
+#: poster/models.py:31
+msgid "Enter primary phone number"
+msgstr "Podaj główny numer telefonu"
+
+#: poster/models.py:33
+msgid "Phone number additional"
+msgstr "Dodatkowy numer telefonu"
+
+#: poster/models.py:34
+msgid "Enter secondary/additional phone number"
+msgstr "Podaj dodatkowy numer telefonu"
+
+#: poster/models.py:35 poster/models.py:106
+msgid "Poland"
+msgstr "Polska"
+
+#: poster/models.py:37 poster/models.py:111
+msgid "Region"
+msgstr "Region"
+
+#: poster/models.py:38 poster/models.py:112
+msgid "Choose region"
+msgstr "Wybierz region/województwo"
+
+#: poster/models.py:40 poster/models.py:108
+msgid "City"
+msgstr "Miasto"
+
+#: poster/models.py:41 poster/models.py:109
+msgid "Enter city"
+msgstr "Podaj miasto"
+
+#: poster/models.py:43 poster/models.py:114
+msgid "ZIP code"
+msgstr "Kod pocztowy"
+
+#: poster/models.py:44 poster/models.py:115
+msgid "Enter ZIP code"
+msgstr "Podaj kod pocztowy"
+
+#: poster/models.py:54 poster/models.py:92
+msgid "Short name"
+msgstr "Skrócona nazwa"
+
+#: poster/models.py:55
+msgid "Enter short photo name"
+msgstr "Podaj skróconą nazwę zdjęć"
+
+#: poster/models.py:57
+msgid "User"
+msgstr "Użytkownik"
+
+#: poster/models.py:58
+msgid "Choose photo owner"
+msgstr "Wybierz kto wykonał zdjęcie"
+
+#: poster/models.py:60 poster/models.py:104
+msgid "Description"
+msgstr "Opis"
+
+#: poster/models.py:61 poster/models.py:105
+msgid "Fill photo description"
+msgstr "Podaj opis zdjęcia"
+
+#: poster/models.py:63
+msgid "Photo taken location"
+msgstr "Miejsce wykonania zdjęcia"
+
+#: poster/models.py:64
+msgid "Enter photo taken location"
+msgstr "Podaj miejsce wykonania zdjęcia"
+
+#: poster/models.py:66
+msgid "Date, time photo taken"
+msgstr "Data i godzina wykonania zdjęcia"
+
+#: poster/models.py:67
+msgid "Enter date and time of photo taken"
+msgstr "Wprowadź datę i godzinę wykonania zdjęcia"
+
+#: poster/models.py:78
+msgid "Name"
+msgstr "Nazwa"
+
+#: poster/models.py:79
+msgid "Enter name category"
+msgstr "Podaj nazwę kategorii"
+
+#: poster/models.py:81
+msgid "Icon"
+msgstr "Ikona"
+
+#: poster/models.py:82
+msgid "Enter icon file name"
+msgstr "Podaj nazwę pliku ikony"
+
+#: poster/models.py:84
+msgid "Active"
+msgstr "Aktywyna"
+
+#: poster/models.py:85
+msgid "Marked if catagery is active"
+msgstr "Zaznacz czy kategoria jest aktywna"
+
+#: poster/models.py:93
+msgid "Enter short sale name"
+msgstr "Podaj skróconą nazwę ogłoszenia"
+
+#: poster/models.py:95
+msgid "Categories"
+msgstr "Kategorie"
+
+#: poster/models.py:96
+msgid "You can choose many categories"
+msgstr "Możesz wybrać wiele kategorii"
+
+#: poster/models.py:98
+msgid "Total value"
+msgstr "Wartość całkowita"
+
+#: poster/models.py:99
+msgid "Enter total value"
+msgstr "Podaj wartość całkowitą"
+
+#: poster/models.py:101
+msgid "Photos"
+msgstr "Zdjęcia"
+
+#: poster/models.py:102
+msgid "You can choose many photos"
+msgstr "Możesz wybrać wiele zdjęć"
 
 #: poster/templates/base-language.html:40
 msgid "Change language"

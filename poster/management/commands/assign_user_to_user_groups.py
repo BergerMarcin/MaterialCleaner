@@ -5,8 +5,7 @@ from materialcleaner.settings import ACCESS_POLICIES
 
 
 class Command(BaseCommand):
-    help = 'Step 5 @ creating new DB.\n' \
-           'Assign users to user-groups to define her/his permissions' + ACCESS_POLICIES
+    help = 'Step 5 @ fill-in new DB.  Assign users to user-groups to define her/his permissions acc. ACCESS_POLICIES'
     
     def handle(self, *args, **options):
         staff = Group.objects.get(name='staff')
@@ -19,4 +18,4 @@ class Command(BaseCommand):
                 if not user.is_superuser and not user.is_staff:
                     user.groups.add(regular)
                 user.save()
-        self.stdout.write("SUCCESS! Users assigned to groups acc. ACCESS_POLICIES")
+        self.stdout.write("DONE! Users assigned to groups acc. ACCESS_POLICIES")

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-11 12:50+0100\n"
+"POT-Creation-Date: 2020-03-12 09:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,25 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: venv/lib/python3.6/site-packages/crispy_forms/tests/test_form_helper.py:129
+#: venv/lib/python3.6/site-packages/crispy_forms/tests/test_form_helper.py:139
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:53
+msgid "This field is required."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/crispy_forms/tests/test_layout.py:360
+msgid "i18n text"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/crispy_forms/tests/test_layout.py:360
+msgid "i18n legend"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/crispy_forms/tests/test_layout_objects.py:129
+#: venv/lib/python3.6/site-packages/django/core/validators.py:31
+msgid "Enter a valid value."
+msgstr "Wprowadź poprawną wartość"
 
 #: venv/lib/python3.6/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"
@@ -46,10 +65,6 @@ msgstr ""
 
 #: venv/lib/python3.6/site-packages/django/core/paginator.py:52
 msgid "That page contains no results"
-msgstr ""
-
-#: venv/lib/python3.6/site-packages/django/core/validators.py:31
-msgid "Enter a valid value."
 msgstr ""
 
 #: venv/lib/python3.6/site-packages/django/core/validators.py:102
@@ -442,10 +457,6 @@ msgstr ""
 msgid ":?.!"
 msgstr ""
 
-#: venv/lib/python3.6/site-packages/django/forms/fields.py:53
-msgid "This field is required."
-msgstr ""
-
 #: venv/lib/python3.6/site-packages/django/forms/fields.py:245
 msgid "Enter a whole number."
 msgstr ""
@@ -614,15 +625,15 @@ msgstr ""
 msgid "Change"
 msgstr ""
 
-#: venv/lib/python3.6/site-packages/django/forms/widgets.py:711
+#: venv/lib/python3.6/site-packages/django/forms/widgets.py:709
 msgid "Unknown"
 msgstr ""
 
-#: venv/lib/python3.6/site-packages/django/forms/widgets.py:712
+#: venv/lib/python3.6/site-packages/django/forms/widgets.py:710
 msgid "Yes"
 msgstr ""
 
-#: venv/lib/python3.6/site-packages/django/forms/widgets.py:713
+#: venv/lib/python3.6/site-packages/django/forms/widgets.py:711
 msgid "No"
 msgstr ""
 

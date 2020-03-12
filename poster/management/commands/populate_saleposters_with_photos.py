@@ -62,12 +62,7 @@ class Command(BaseCommand):
                 sp = SalePoster()
                 sp.user = user
                 sp.title = f'{category.name} {index} of {fake.name()}'
-                sp.categories.add(category)
                 sp.total_value = randint(-50000, 500000) / 100.0
-                for _ in range(6):
-                    photo = self.new_photo(category.name, category.name + ' ' + range(1,3) + '.jpg', user.userdetail.city)
-                    if photo is not None:
-                        sp.photos.add(photo)
                 sp.description = fake.text()
                 sp.country = user.userdetail.country
                 sp.city = user.userdetail.city
@@ -76,5 +71,12 @@ class Command(BaseCommand):
                 sp.street = ''
                 sp.active = True
                 sp.save()
-        
+                
+                sp.categories.add(category)
+                for _ in range(6):
+                    photo = self.new_photo(category.name, category.name + ' ' + str(randint(1,3)) + '.jpg', user.userdetail.city)
+                    if photo is not None:
+                        sp.photos.add(photo)
+                sp.save()
+                
         self.stdout.write("DONE! SalePoster with Photos added to models/DB")

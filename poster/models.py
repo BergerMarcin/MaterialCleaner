@@ -91,13 +91,13 @@ class SalePoster(models.Model):
     title = models.CharField(max_length=64,
                              verbose_name=_("Short name"),
                              help_text=_("Enter short sale name"))
-    categories = models.ManyToManyField(Category,
+    categories = models.ManyToManyField(Category, null=True,
                                         verbose_name=_("Categories"),
                                         help_text=_("You can choose many categories"))
     total_value = models.DecimalField(max_digits=10, decimal_places=2,
                                       verbose_name=_("Total value"),
                                       help_text=_("Enter total value"))
-    photos = models.ManyToManyField(Photo,
+    photos = models.ManyToManyField(Photo, null=True,
                                     verbose_name=_("Photos"),
                                     help_text=_("You can choose many photos"))
     description = models.TextField(max_length=512, null=True,

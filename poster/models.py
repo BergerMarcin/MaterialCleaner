@@ -67,7 +67,7 @@ class Photo(models.Model):
                                           help_text=_("Enter date and time of photo taken"))
     file_name_origin = models.CharField(max_length=64, default='')
     file_name_hashed = models.CharField(max_length=64, default='')
-    pathname_loaded = models.CharField(max_length=256, default='')
+    path_loaded = models.CharField(max_length=256, default='')
     file_type = models.ForeignKey(FileType, on_delete=models.SET(None), default=None)
     update_date = models.DateTimeField(auto_now=True)
     creation_date = models.DateTimeField(auto_now_add=True)

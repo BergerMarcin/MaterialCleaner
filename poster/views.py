@@ -62,7 +62,7 @@ class PhotoUploadView(FormView):
                     #               description='',
                     #               taken_localisation='',
                     #               file_name_hashed=files_written['file_name_hashed'],
-                    #               pathname_loaded=files_written['pathname_loaded'],
+                    #               path_loaded=files_written['path_loaded'],
                     #               file_type=files_written['file_type'])
                     # print(photo)
                     # photo.save()

@@ -1,12 +1,15 @@
+from time import timezone
+
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
-from poster.models import SalePoster, Photo, Category
-from poster.uploaded_files_operations import hash_SH1_filename
+from poster.models import SalePoster, Photo, Category, FileType
+from poster.uploaded_files_operations import copy_regular_file_to_path_uploaded
 from faker import Faker
 from random import randint
 from datetime import datetime, timedelta
 
-PHOTO_FILES_ROOT = 'poster/managemnt/commands/photos'
+
+PHOTO_FILES_ROOT = 'poster/management/commands/photos'
 
 PHOTOS_NAMES = ['brick debris 1.jpg',
                 'brick debris 2.jpg',
@@ -22,29 +25,33 @@ PHOTOS_NAMES = ['brick debris 1.jpg',
                 'toilet seats 3.jpg',
                 ]
 
+fake = Faker('pl_PL')
+
 
 class Command(BaseCommand):
     help = 'Step 7 @ fill-in new DB.  Fill-in SalePoster with Photo of model/DB'
     
     def new_photo(self, title, file_name_origin, taken_localisation):
-        fake = Faker('pl_PL')
+        photo_uploaded_data = copy_regular_file_to_path_uploaded(file_name_origin, PHOTO_FILES_ROOT)
+        if photo_uploaded_data is None:
+            return None
         photo = Photo()
         photo.title = title
         photo.description = fake.text()
         photo.taken_localisation = taken_localisation
-        photo.taken_datetime = datetime.now() - timedelta(days=int(0, 20), hours=int(0, 6))
-        photo.file_name_origin = file_name_origin
-        photo.file_name_hashed = hash_SH1_filename(file_name_origin)
-        
-        
+        photo.taken_datetime = datetime.utcnow() - timedelta(days=randint(0, 20), hours=randint(3, 8))
+        photo.file_name_origin = photo_uploaded_data['file_name_origin']
+        photo.file_name_hashed = photo_uploaded_data['file_name_hashed']
+        photo.path_loaded = photo_uploaded_data['path_loaded']
+        photo.file_type = FileType.objects.get(type='image/jpeg')
+        photo.save()
         return photo
     
     def handle(self, *args, **options):
         '''
         Creating SalePoster with Photos
         '''
-        
-        fake = Faker('pl_PL')
+
         categories = Category.objects.all()
         user_regulars = User.objects.filter(groups__name='regular')
         
@@ -58,7 +65,9 @@ class Command(BaseCommand):
                 sp.categories.add(category)
                 sp.total_value = randint(-50000, 500000) / 100.0
                 for _ in range(6):
-                    sp.photos.add(self.new_photo(category.name, category.name + ' ' + range(1,3) + '.jpg', user.userdetail.city))
+                    photo = self.new_photo(category.name, category.name + ' ' + range(1,3) + '.jpg', user.userdetail.city)
+                    if photo is not None:
+                        sp.photos.add(photo)
                 sp.description = fake.text()
                 sp.country = user.userdetail.country
                 sp.city = user.userdetail.city

@@ -11,14 +11,14 @@ REGIONS = (
     ('K', 'małopolskie'),
     ('W', 'mazowieckie'),
     ('O', 'opolskie'),
-    ('R', 'podkarpacke'),
+    ('R', 'podkarpackie'),
     ('B', 'podlaskie'),
     ('G', 'pomorskie'),
     ('S', 'śląskie'),
-    ('T', 'świętokrzskie'),
-    ('N', 'warmińsko-mazursie'),
+    ('T', 'świętokrzyskie'),
+    ('N', 'warmińsko-mazurskie'),
     ('P', 'wielkopolskie'),
-    ('Z', 'zachodniopomorsie'),
+    ('Z', 'zachodniopomorskie'),
 )
 
 
@@ -33,12 +33,12 @@ class UserDetail(models.Model):
                                     verbose_name=_("Phone number additional"),
                                     help_text=_("Enter secondary/additional phone number"))
     country = models.TextField(max_length=32, default=_('Poland'))
-    city = models.TextField(max_length=64,
-                            verbose_name=_("City"),
-                            help_text=_("Enter city"))
     region = models.CharField(max_length=1, choices=REGIONS,
                               verbose_name=_("Region"),
                               help_text=_("Choose region"))
+    city = models.TextField(max_length=64,
+                            verbose_name=_("City"),
+                            help_text=_("Enter city"))
     zip_code = models.TextField(max_length=8,
                                 verbose_name=_("ZIP code"),
                                 help_text=_("Enter ZIP code"))

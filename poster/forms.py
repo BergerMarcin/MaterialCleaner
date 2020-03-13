@@ -80,7 +80,33 @@ class UserAddForm(forms.Form):
     email = forms.CharField(label=_('Email'), validators=[EmailValidator(), validate_email_unique], required=True)
     phone_prim = forms.CharField(label=_('Phone number'), min_length=9, max_length=32,
                                  validators=[validate_phone_prim_unique], required=True)
-    phone_second = forms.CharField(label=_('Phone number additional'), min_length=9, max_length=32)
+    phone_second = forms.CharField(label=_('Phone number additional'), max_length=32)
+    country = forms.CharField(label=_('Country'), max_length=32, required=True)
+    region = forms.ChoiceField(label=_('Choose region'), choices=REGIONS, required=True)
+    city = forms.CharField(label=_('City'), min_length=3, max_length=32, required=True)
+    zip_code = forms.CharField(label=_('ZIP code'), min_length=3, max_length=8, required=True)
+    street = forms.CharField(label=_('Street, house and flat no.'), max_length=64)
+    password = forms.CharField(label=_('Password'), max_length=16, widget=forms.PasswordInput, required=True)
+    re_password = forms.CharField(label=_('Repeat password'), max_length=16, widget=forms.PasswordInput, required=True)
+    
+    # Validation re_password
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get('password')
+        re_password = cleaned_data.get('re_password')
+        if password != re_password:
+            raise forms.ValidationError(_('Password was repeated wrongly'))
+
+
+class UserAddForm(forms.Form):
+    username = forms.CharField(label=_('Username'), min_length=3, max_length=64,
+                               validators=[validate_username_unique], required=True)
+    first_name = forms.CharField(label=_('First name'), min_length=3, max_length=64, required=True)
+    last_name = forms.CharField(label=_('Last name'), min_length=3, max_length=64, required=True)
+    email = forms.CharField(label=_('Email'), validators=[EmailValidator(), validate_email_unique], required=True)
+    phone_prim = forms.CharField(label=_('Phone number'), min_length=9, max_length=32,
+                                 validators=[validate_phone_prim_unique], required=True)
+    phone_second = forms.CharField(label=_('Phone number additional'), max_length=32)
     country = forms.CharField(label=_('Country'), max_length=32, required=True)
     region = forms.ChoiceField(label=_('Choose region'), choices=REGIONS, required=True)
     city = forms.CharField(label=_('City'), min_length=3, max_length=32, required=True)
@@ -106,7 +132,7 @@ class UserUpdateForm(forms.Form):
     email = forms.CharField(label=_('Email'), validators=[EmailValidator(), validate_email_unique], required=True)
     phone_prim = forms.CharField(label=_('Phone number'), min_length=9, max_length=32,
                                  validators=[validate_phone_prim_unique], required=True)
-    phone_second = forms.CharField(label=_('Phone number additional'), min_length=9, max_length=32)
+    phone_second = forms.CharField(label=_('Phone number additional'), max_length=32)
     country = forms.CharField(label=_('Country'), max_length=32, required=True)
     region = forms.ChoiceField(label=_('Choose region'), choices=REGIONS, required=True)
     city = forms.CharField(label=_('City'), min_length=3, max_length=32, required=True)

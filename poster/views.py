@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import User, Group
 from django.shortcuts import render, redirect
 from django.template.response import TemplateResponse
@@ -105,6 +106,58 @@ class UserAddView(View):
         form_lang = LanguageForm()
         ctx = {'form': form, 'form_lang': form_lang}
         return render(request, 'user_add.html', ctx)
+
+
+class UserUpdateView(LoginRequiredMixin, PermissionRequiredMixin, View):
+    def get(self, request):
+        user = request.user
+        userdetail = UserDetail.objects.get(user=user)
+        form = UserAddForm()
+        form.username = user.username
+        form.first_name = user.first_name
+        form.last_name = user.last_name
+        form.email = user.email
+        form.phone_prim = userdetail.phone_prim
+        form.phone_second = userdetail.phone_second
+        form.country = userdetail.country
+        form.region = userdetail.region
+        form.city = userdetail.city
+        form.zip_code = userdetail.zip_code
+        form.street = userdetail.street
+        form_lang = LanguageForm()
+        ctx = {'form': form, 'form_lang': form_lang}
+        return render(request, 'user_update.html', ctx)
+    
+    def post(self, request):
+        request = change_language(request)
+        form = UserAddForm(request.POST)
+        if form.is_valid():
+            user = User.objects.create_user(
+                username=form.cleaned_data['username'],
+                first_name=form.cleaned_data['first_name'],
+                last_name=form.cleaned_data['last_name'],
+                email=form.cleaned_data['email'],
+                password=form.cleaned_data['password'],
+                is_superuser=False,
+                is_staff=False,
+                is_active=True,
+            )
+            regular = Group.objects.get(name='regular')
+            user.groups.add(regular)
+            user.save()
+            user_detail = UserDetail.objects.create(
+                user=user,
+                phone_prim=form.cleaned_data['phone_prim'],
+                phone_second=form.cleaned_data['phone_second'],
+                country=form.cleaned_data['country'],
+                region=form.cleaned_data['region'],
+                city=form.cleaned_data['city'],
+                zip_code=form.cleaned_data['zip_code'],
+            )
+            return redirect("/login")
+        form_lang = LanguageForm()
+        ctx = {'form': form, 'form_lang': form_lang}
+        return render(request, 'user_update.html', ctx)
 
 
 # -----------------------------------------------

@@ -14,8 +14,16 @@ fake = Faker("pl_PL")
 fake.add_provider(phone_number)
 
 
+# Function to count objects (and avoid exception)
+def model_count(classmodel):
+    try:
+        return classmodel.objects.count()
+    except classmodel.DoesNotExist:
+        return 0
+
+
 # --------------------------------
-# Fake Group creation part
+# Fake Group creation part (functions be applied if ONLY ONCE CALLED - to avoid double groups)
 
 def create_fake_group():
     new_group_name = GROUP_TYPES[randint(0, len(GROUP_TYPES) - 1)]
@@ -36,9 +44,14 @@ def create_group_assign_user_to_group(new_user, group_name):
 
 
 def create_fake_user_acc_params(is_superuser, group, is_active):
-    password = str(fake.text()[:6].remove(string.whitespace))
-    username = fake.name().split(' ')[0]
-    first_name, last_name = fake.name().split(' ')
+    password = str(fake.text()[:6].replace(string.whitespace, ''))
+    u_name = fake.name().split(' ').pop()
+    # while ((model_count(User) > 1) and (User.objects.get(username=u_name) is not None)):
+    #     u_name = fake.name().split(' ').pop()
+    username = u_name
+    name = fake.name().split(' ')
+    first_name = name[0]
+    last_name = name.pop()
     email = fake.email()
     if is_superuser:
         new_user = User.objects.create_superuser(password=password, is_superuser=True, username=username,
@@ -74,10 +87,12 @@ def create_fake_user_regular():
 
 
 # --------------------------------
-# Fake UserDetail creation part
+# Fake User with UserDetail creation part
 
-def create_fake_user_detail():
+def create_fake_user_regular_with_user_details():
+    new_user = create_fake_user_regular()
     address = fake.address()
+    
     new_user_detail = UserDetail()
     new_user_detail.phone_prim = fake.phone_number()
     new_user_detail.phone_second = fake.phone_number()
@@ -85,18 +100,9 @@ def create_fake_user_detail():
     new_user_detail.city = address.splitlines()[1].split(' ')[1]
     new_user_detail.zip_code = address.splitlines()[1].split(' ')[0]
     new_user_detail.street = address.splitlines()[0]
+    new_user_detail.user = new_user
     new_user_detail.save()
-    return new_user_detail
-
-
-# --------------------------------
-# Fake User with UserDetail creation part
-
-def create_fake_user_regular_with_user_details():
-    new_user = create_fake_user_regular()
-    new_user_details = create_fake_user_detail()
-    new_user_details.user = new_user
-    new_user_details.save()
+    
     return new_user
 
 
@@ -105,7 +111,7 @@ def create_fake_user_regular_with_user_details():
 
 def create_fake_file_type():
     new_file_type_name = FILE_PHOTO_TYPES_BASIC[randint(0, len(FILE_PHOTO_TYPES_BASIC) - 1)]
-    new_file_type = FileType.objects.create(name=new_file_type_name)
+    new_file_type = FileType.objects.create(type=new_file_type_name)
     return new_file_type
 
 
@@ -123,7 +129,9 @@ def create_fake_category():
 
 def create_fake_photo():
     pspwpc = PopulateSalepostersWithPhotosCommand()
-    new_photo = pspwpc.new_photo(CATEGORIES_BASIC['en'],
+    if not FileType.objects.filter(type='image/jpeg'):
+        FileType.objects.create(type='image/jpeg')
+    new_photo = pspwpc.new_photo(CATEGORIES_BASIC[randint(0, len(CATEGORIES_BASIC) - 1)]['en'],
                                  PHOTOS_NAMES_COMMANDS[randint(0, len(PHOTOS_NAMES_COMMANDS) - 1)],
                                  fake.address().splitlines()[1].split(' ')[1])
     return new_photo

@@ -142,7 +142,6 @@ REGIONS = (
     ('Z', 'zachodniopomorskie'),
 )
 
-
 # Application definition
 
 INSTALLED_APPS = [

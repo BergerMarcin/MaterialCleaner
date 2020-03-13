@@ -14,15 +14,17 @@ def test_add_group(set_up_group):
     model_count_before = Group.objects.count()
     
     # When:
-    new_model_object = create_fake_category()
+    pass
     
     # Then:
-    assert Group.objects.count() == model_count_before + 1
-    assert Group.objects.count() == 4
+    assert Group.objects.count() == model_count_before
+    assert Group.objects.count() == len(GROUP_TYPES)
+    assert Group.objects.filter(name=GROUP_TYPES[0]).count() == 1
+    assert Group.objects.filter(name=GROUP_TYPES[1]).count() == 1
 
 
 @pytest.mark.django_db
-def test_add_user(set_up_user):
+def test_add_user(set_up_group, set_up_user):
     '''
     Should create new User objects and save them to DB
     '''
@@ -42,26 +44,9 @@ def test_add_user(set_up_user):
 
 
 @pytest.mark.django_db
-def test_add_user_detail(set_up_user_detail):
+def test_add_user_regular_with_user_detail(set_up_group, set_up_user_regular_with_user_detail):
     '''
-    Should create new UserDetail objects and save them to DB
-    '''
-    
-    # Given:
-    model_count_before = UserDetail.objects.count()
-    
-    # When:
-    new_model_object = create_fake_user_detail()
-    
-    # Then:
-    assert UserDetail.objects.count() == model_count_before + 1
-    assert UserDetail.objects.count() == 4
-
-
-@pytest.mark.django_db
-def test_add_user_with_user_detail(set_up_user_with_user_detail):
-    '''
-    Should create new User with UserDetail objects and save them to DB
+    Should create new regular User with UserDetail objects and save them to DB
     '''
     
     # Given:
@@ -73,10 +58,12 @@ def test_add_user_with_user_detail(set_up_user_with_user_detail):
     # Then:
     assert User.objects.count() == model_count_before + 1
     assert User.objects.count() == 4
-    assert User.objects.filter(is_superuser=True).count() == 2
-    assert User.objects.filter(groups__name='staff').count() == 3
-    assert len(User.objects.get(Q(groups__name='staff') & Q(is_superuser=False)).city) > 0
-    assert len(User.objects.get(groups__name='regular').city) > 0
+    assert User.objects.filter(is_superuser=True).count() == 1
+    assert User.objects.filter(groups__name='staff').count() == 1
+    assert User.objects.filter(groups__name='regular').count() == 3
+    assert len(User.objects.filter(groups__name='regular')[0].email) > 0
+    assert len(User.objects.filter(groups__name='regular')[1].userdetail.phone_prim) > 0
+    assert len(User.objects.filter(groups__name='regular')[2].userdetail.city) > 0
 
 
 @pytest.mark.django_db
@@ -127,11 +114,13 @@ def test_add_photo(set_up_photo):
     
     # Then:
     assert Photo.objects.count() == model_count_before + 1
-    assert Photo.objects.count() == 5
+    assert Photo.objects.count() == 7
 
 
 @pytest.mark.django_db
-def test_add_sale_poster_with_user_userdetail_category_photos(set_up_sale_poster_with_user_userdetail_category_photos):
+def test_add_sale_poster_with_user_userdetail_category_photos(
+        set_up_group,
+        set_up_sale_poster_with_user_userdetail_category_photos):
     '''
     Should create new SalePoster objects and save them to DB
     '''
@@ -145,7 +134,7 @@ def test_add_sale_poster_with_user_userdetail_category_photos(set_up_sale_poster
     # Then:
     assert SalePoster.objects.count() == model_count_before + 1
     assert SalePoster.objects.count() == 5
-    assert Group.objects.count() == 1
+    assert Group.objects.count() == 2
     assert User.objects.count() == 5
     assert User.objects.filter(groups__name='regular').count() == 5
     assert UserDetail.objects.count() == 5

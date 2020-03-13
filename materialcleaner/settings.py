@@ -122,6 +122,26 @@ CATEGORIES_BASIC = [
     {'en': 'toilet seats', 'pl': 'sedesy'},
 ]
 
+# Regions/Wojwództwa of Poland
+REGIONS = (
+    ('D', 'dolnośląskie'),
+    ('C', 'kujawsko-pomorskie'),
+    ('L', 'lubelskie'),
+    ('F', 'lubuskie'),
+    ('E', 'łódzkie'),
+    ('K', 'małopolskie'),
+    ('W', 'mazowieckie'),
+    ('O', 'opolskie'),
+    ('R', 'podkarpackie'),
+    ('B', 'podlaskie'),
+    ('G', 'pomorskie'),
+    ('S', 'śląskie'),
+    ('T', 'świętokrzyskie'),
+    ('N', 'warmińsko-mazurskie'),
+    ('P', 'wielkopolskie'),
+    ('Z', 'zachodniopomorskie'),
+)
+
 
 # Application definition
 

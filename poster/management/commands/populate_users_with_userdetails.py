@@ -57,5 +57,19 @@ class Command(BaseCommand):
         userdetail = self.fake_userdetails()
         userdetail.user = u
         userdetail.save()
+
+        u = User.objects.create_user(password='12345678', is_superuser=False, username='niedziela',
+                                     first_name='Marian', last_name='Sobota', email='ms@wp.pl',
+                                     is_staff=False, is_active=True)
+        userdetail = self.fake_userdetails()
+        userdetail.user = u
+        userdetail.save()
+        
+        u = User.objects.create_user(password='12341234', is_superuser=False, username='krtek',
+                                     first_name='Matuesz', last_name='Morawiecki', email='mm@wp.pl',
+                                     is_staff=False, is_active=True)
+        userdetail = self.fake_userdetails()
+        userdetail.user = u
+        userdetail.save()
         
         self.stdout.write("DONE! Users added to model/DB acc. ACCESS_POLICIES")

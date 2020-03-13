@@ -1,28 +1,11 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-
-REGIONS = (
-    ('D', 'dolnośląskie'),
-    ('C', 'kujawsko-pomorskie'),
-    ('L', 'lubelskie'),
-    ('F', 'lubuskie'),
-    ('E', 'łódzkie'),
-    ('K', 'małopolskie'),
-    ('W', 'mazowieckie'),
-    ('O', 'opolskie'),
-    ('R', 'podkarpackie'),
-    ('B', 'podlaskie'),
-    ('G', 'pomorskie'),
-    ('S', 'śląskie'),
-    ('T', 'świętokrzyskie'),
-    ('N', 'warmińsko-mazurskie'),
-    ('P', 'wielkopolskie'),
-    ('Z', 'zachodniopomorskie'),
-)
+from materialcleaner.settings import REGIONS
 
 
 # Create your models here.
+
 
 class UserDetail(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

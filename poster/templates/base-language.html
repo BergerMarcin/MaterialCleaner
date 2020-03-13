@@ -21,19 +21,6 @@
 
       {# Language choice via POST-form-radio#}
       <form action='' method='POST'>
-
-        {% comment %}
-        {% get_current_language as LANGUAGE_CODE %}
-        <label for='new_lang'>{% trans 'Choose your language:' %}</label>
-        <fieldset id='new_lang'>
-          <input type='radio' id='en' name='language' value='en' {% if LANGUAGE_CODE == 'en' %} checked {% endif %}>
-          <label for='en'>German</label>
-          <input type='radio' id='pl' name='language' value='pl' {% if LANGUAGE_CODE == 'pl' %} checked {% endif %}>
-          <label for='pl'>English</label>
-        </fieldset>
-        {{ form.newlang }}
-        {% endcomment %}
-
         {{ form.language.label }}
         {{ form.language }}
         <input type='submit' value='{% trans "Change language" %}'>
@@ -45,6 +32,7 @@
       {% endblock %}
 
       {# Examples of sentences to be translated after change (translations taken from django.mo)#}
+{% comment %}
       <h1>{% trans 'Translation tests' %}</h1>
       <label>{% trans 'First word ' %}</label>
       <input id='word1' type='text'/>
@@ -54,18 +42,19 @@
       <br>
       <label>{% trans 'Third word' %}</label>
       <input id='word3' type='password'/>
+{% endcomment %}
 
     </div>
   </div>
 </div>
 
-{% comment %}
 {% if user.is_authenticated %}
-  <span>{% trans 'Hello' %} {{ user.username }}! </span><a href='{% url "logout" %}'>{% trans 'log-ou' %}</a>
+  <span>{% trans 'Hello' %} {{ user.username }}! </span>
+{#  <a href='{% url "logout" %}'>{% trans 'Logout' %}</a>#}
 {% else %}
-  <a href='{% url "login" %}'>{% trans 'log-in' %}</a>
+  <a href='{% url "login" %}'>{% trans 'Login' %}</a>
 {% endif %}
-{% endcomment %}
+
 
 </body>
 </html>

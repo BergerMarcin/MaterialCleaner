@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.template.response import TemplateResponse
 from django.views import View
@@ -5,13 +6,22 @@ from django.views.generic import FormView
 from django.utils import translation
 from materialcleaner.settings import LANGUAGES, LANGUAGE_CODE
 from .uploaded_files_operations import handle_uploaded_photo_files
-from .forms import BaseForm, PhotoUploadForm
+from .forms import LanguageForm, LoginForm, PhotoUploadForm
 
 
 # Create your views here.
 
 # TODO: after each change User or UserDetails and Login checking user if
 #  user belongs to proper UserGroup (regular / inactive_regular) acc. active status
+
+def change_language(request):
+    form_lang = LanguageForm(request.POST)
+    if form_lang.is_valid():
+        lang = form_lang.cleaned_data['language']
+        if lang in list(lang[0] for lang in LANGUAGES):
+            translation.activate(lang)
+            request.session[translation.LANGUAGE_SESSION_KEY] = lang
+    return request
 
 
 class IndexBaseWithLanguageChoiceView(View):
@@ -21,18 +31,30 @@ class IndexBaseWithLanguageChoiceView(View):
     '''
     
     def get(self, request):
-        form = BaseForm()
-        return render(request, 'base-language.html', {'form': form})
+        form_lang = LanguageForm()
+        return render(request, 'index.html', {'form': form_lang})
     
     def post(self, request):
-        form = BaseForm(request.POST)
-        if form.is_valid():
-            language = form.cleaned_data['language']
-            if language in list(lang[0] for lang in LANGUAGES):
-                translation.activate(language)
-                request.session[translation.LANGUAGE_SESSION_KEY] = language
+        request = change_language(request)
         return redirect("/index")
 
+
+class Login(View):
+    def get(self, request):
+        form = LoginForm()
+        return render(request, 'login.html', {'form': form})
+    
+    def post(self, request):
+        request = change_language(request)
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+            if user:
+                login(request, user)
+        return redirect("/index")
+
+
+# -----------------------------------------------
 
 class PhotoListView(View):
     def get(self, request):

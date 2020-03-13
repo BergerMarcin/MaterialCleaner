@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-12 09:02+0100\n"
+"POT-Creation-Date: 2020-03-13 11:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,11 +20,16 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
+#: venv/lib/python3.6/site-packages/_pytest/config/argparsing.py:393
+#, python-format
+msgid "ambiguous option: %(option)s could match %(matches)s"
+msgstr ""
+
 #: venv/lib/python3.6/site-packages/crispy_forms/tests/test_form_helper.py:129
 #: venv/lib/python3.6/site-packages/crispy_forms/tests/test_form_helper.py:139
 #: venv/lib/python3.6/site-packages/django/forms/fields.py:53
 msgid "This field is required."
-msgstr ""
+msgstr "Pole wymagane"
 
 #: venv/lib/python3.6/site-packages/crispy_forms/tests/test_layout.py:360
 msgid "i18n text"
@@ -152,7 +157,7 @@ msgstr[1] ""
 #: venv/lib/python3.6/site-packages/django/forms/fields.py:290
 #: venv/lib/python3.6/site-packages/django/forms/fields.py:325
 msgid "Enter a number."
-msgstr ""
+msgstr "Wprowadź wartość"
 
 #: venv/lib/python3.6/site-packages/django/core/validators.py:397
 #, python-format

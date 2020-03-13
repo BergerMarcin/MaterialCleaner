@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.template.response import TemplateResponse
 from django.views import View
@@ -40,7 +40,7 @@ class IndexBaseWithLanguageChoiceView(View):
         return redirect("/index")
 
 
-class Login(View):
+class LoginView(View):
     def get(self, request):
         form = LoginForm()
         form_lang = LanguageForm()
@@ -59,6 +59,12 @@ class Login(View):
         form_lang = LanguageForm()
         ctx = {'form': form, 'form_lang': form_lang}
         return render(request, 'login.html', ctx)
+
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect("/index")
 
 
 # -----------------------------------------------

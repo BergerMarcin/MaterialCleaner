@@ -25,35 +25,23 @@
         {{ form_lang.language }}
         <input type='submit' value='{% trans "Change language" %}'>
         {% csrf_token %}
+
+        {% if user.is_authenticated %}
+          <span>{% trans 'Hello' %} {{ user.username }}! </span>
+          <a href='{% url "logout" %}'>{% trans 'Logout' %}</a>
+        {% else %}
+          <a href='{% url "login" %}'>{% trans 'Login' %}</a>
+        {% endif %}
+
       </form>
       <br><br>
 
       {% block content %}
       {% endblock %}
 
-      {# Examples of sentences to be translated after change (translations taken from django.mo)#}
-{% comment %}
-      <h1>{% trans 'Translation tests' %}</h1>
-      <label>{% trans 'First word ' %}</label>
-      <input id='word1' type='text'/>
-      <br>
-      <label>{% trans 'Second word ' %}</label>
-      <input id='word2' type='text'/>
-      <br>
-      <label>{% trans 'Third word' %}</label>
-      <input id='word3' type='password'/>
-{% endcomment %}
-
     </div>
   </div>
 </div>
-
-{% if user.is_authenticated %}
-  <span>{% trans 'Hello' %} {{ user.username }}! </span>
-{#  <a href='{% url "logout" %}'>{% trans 'Logout' %}</a>#}
-{% else %}
-  <a href='{% url "login" %}'>{% trans 'Login' %}</a>
-{% endif %}
 
 
 </body>

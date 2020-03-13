@@ -1,0 +1,17 @@
+{% extends 'base-language.html' %}
+{% load i18n %}
+
+{% block page_title %}
+  {% trans "MC Add User" %}
+{% endblock %}
+
+{% block content %}
+  <h2>{% trans "Add user" %}</h2>
+  <form action='' method='POST'>
+    {{ form.as_p }}
+    <input type='submit' value='{% trans "New User" %}'>
+    <a href={% url "index" %}>{% trans "Start Page" %}</a>
+    {% csrf_token %}
+  </form>
+  <br><br>
+{% endblock %}

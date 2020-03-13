@@ -16,13 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from poster.views import IndexBaseWithLanguageChoiceView, PhotoUploadView, LoginView, LogoutView
+from poster.views import IndexBaseWithLanguageChoiceView, PhotoUploadView, LoginView, LogoutView, UserAddView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('index/', IndexBaseWithLanguageChoiceView.as_view(), name='index'),
+    path('add_user/', UserAddView.as_view(), name='user_add'),
     path('', IndexBaseWithLanguageChoiceView.as_view()),
     path('home/', IndexBaseWithLanguageChoiceView.as_view()),
     path('upload/', PhotoUploadView.as_view(), name='upload'),

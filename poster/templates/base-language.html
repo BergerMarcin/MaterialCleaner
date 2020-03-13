@@ -21,8 +21,8 @@
 
       {# Language choice via POST-form-radio#}
       <form action='' method='POST'>
-        {{ form.language.label }}
-        {{ form.language }}
+        {{ form_lang.language.label }}
+        {{ form_lang.language }}
         <input type='submit' value='{% trans "Change language" %}'>
         {% csrf_token %}
       </form>

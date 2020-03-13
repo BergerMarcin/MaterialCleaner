@@ -9,22 +9,35 @@ from django.utils.translation import ugettext_lazy as _
 from poster.models import UserDetail
 
 
-# Validation unique username (login)
+# Validation: unique username @ DB (add, update user)
 def validate_username_unique(value):
-    if len(User.objects.filter(username=value)) > 0:
+    if User.objects.filter(username=value).count() > 0:
         raise ValidationError(_('Username already exists. Please write another username'))
 
+# Validation: existing username @ DB (login)
+def validate_username_exist(value):
+    if User.objects.filter(username=value).count() == 0:
+        raise ValidationError(_('Unknown username. Please write another username'))
 
-# Validation unique email (login)
+# Validation: unique email @ DB (add, update user)
 def validate_email_unique(value):
-    if len(User.objects.filter(email=value)) > 0:
-        raise ValidationError('Email already exists. Please write another email')
+    if User.objects.filter(email=value).count() > 0:
+        raise ValidationError(_('Email already exists. Please write another email'))
 
+# Validation: existing email @ DB (login)
+def validate_email_exist(value):
+    if User.objects.filter(email=value).count() == 0:
+        raise ValidationError(_('Unknown email. Please write another email'))
 
-# Validation unique primary phone (login)
+# Validation: unique primary phone @ DB (add, update user)
 def validate_phone_prim_unique(value):
-    if len(UserDetail.objects.filter(phone_prim=value)) > 0:
-        raise ValidationError('Phone number (primary) already exists. Please write another phone number')
+    if UserDetail.objects.filter(phone_prim=value).count() > 0:
+        raise ValidationError(_('Phone number (primary) already exists. Please write another phone number'))
+
+# Validation: existing primary phone @ DB (login)
+def validate_phone_prim_exist(value):
+    if UserDetail.objects.filter(phone_prim=value).count() == 0:
+        raise ValidationError(_('Unknown phone number (primary). Please write another phone number'))
 
 
 class LanguageForm(forms.Form):
@@ -42,8 +55,10 @@ class PhotoUploadForm(forms.Form):
 class LoginForm(forms.Form):
     identifier = forms.CharField(label=_('Username / email / primary phone number'),
                                  min_length=3, max_length=64,
-                                 validators=[validate_username_unique, validate_email_unique,
-                                             validate_phone_prim_unique],
+                                 validators=[validate_username_exist,
+                                             # validate_email_exist,
+                                             # validate_phone_prim_exist
+                                             ],
                                  required=True)
     password = forms.CharField(label=_('Password'), max_length=16, widget=forms.PasswordInput, required=True)
     re_password = forms.CharField(label=_('Repeat password'), max_length=16, widget=forms.PasswordInput, required=True)

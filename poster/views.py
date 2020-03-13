@@ -32,7 +32,8 @@ class IndexBaseWithLanguageChoiceView(View):
     
     def get(self, request):
         form_lang = LanguageForm()
-        return render(request, 'index.html', {'form': form_lang})
+        ctx = {'form_lang': form_lang}
+        return render(request, 'index.html', ctx)
     
     def post(self, request):
         request = change_language(request)
@@ -42,16 +43,22 @@ class IndexBaseWithLanguageChoiceView(View):
 class Login(View):
     def get(self, request):
         form = LoginForm()
-        return render(request, 'login.html', {'form': form})
+        form_lang = LanguageForm()
+        ctx = {'form': form, 'form_lang': form_lang}
+        return render(request, 'login.html', ctx)
     
     def post(self, request):
         request = change_language(request)
         form = LoginForm(request.POST)
         if form.is_valid():
-            user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+            user = authenticate(username=form.cleaned_data['identifier'], password=form.cleaned_data['password'])
+            print(user)
             if user:
                 login(request, user)
-        return redirect("/index")
+                return redirect("/index")
+        form_lang = LanguageForm()
+        ctx = {'form': form, 'form_lang': form_lang}
+        return render(request, 'login.html', ctx)
 
 
 # -----------------------------------------------

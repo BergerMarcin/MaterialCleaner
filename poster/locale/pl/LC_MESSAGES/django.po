@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-13 11:03+0100\n"
+"POT-Creation-Date: 2020-03-13 11:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,106 +22,136 @@ msgstr ""
 
 #: poster/forms.py:15
 msgid "Username already exists. Please write another username"
-msgstr "Użytkownik już istnieje. Prosze podaj inną nazwę użytkownika"
+msgstr "Użytkownik już istnieje. Proszę podaj inną nazwę użytkownika"
 
-#: poster/forms.py:32
+#: poster/forms.py:20
+#, fuzzy
+#| msgid "Username already exists. Please write another username"
+msgid "Unknown username. Please write another username"
+msgstr "Nieznany użytkownik. Proszę podaj inną nazwę użytkownika"
+
+#: poster/forms.py:25
+#, fuzzy
+#| msgid "Username already exists. Please write another username"
+msgid "Email already exists. Please write another email"
+msgstr "Email już istnieje. Proszę podaj inną nazwę użytkownika"
+
+#: poster/forms.py:30
+#, fuzzy
+#| msgid "Username already exists. Please write another username"
+msgid "Unknown email. Please write another email"
+msgstr "Nieznany email. Proszę podaj inny email"
+
+#: poster/forms.py:35
+#, fuzzy
+#| msgid "Username already exists. Please write another username"
+msgid "Phone number (primary) already exists. Please write another phone number"
+msgstr "Numer telefonu już istnieje. Proszę podaj inny numer telefonu"
+
+#: poster/forms.py:40
+#, fuzzy
+#| msgid "Username already exists. Please write another username"
+msgid "Unknown phone number (primary). Please write another phone number"
+msgstr "Nieznany numer telefonu. Proszę podaj inny numer telefonu"
+
+#: poster/forms.py:45
 msgid "Language"
 msgstr "Język"
 
-#: poster/forms.py:32
+#: poster/forms.py:45
 msgid "Choose language"
 msgstr "Wybierz język"
 
-#: poster/forms.py:37
+#: poster/forms.py:50
 #, fuzzy
 #| msgid "Choose photo owner"
 msgid "Common photo name"
 msgstr "Wybierz kto wykonał zdjęcie"
 
-#: poster/forms.py:37
+#: poster/forms.py:50
 msgid "Fill-in common name for all photos"
 msgstr "Podaj wspólną nazwę dla wszystkich zdjęć"
 
-#: poster/forms.py:39 poster/models.py:84
+#: poster/forms.py:52 poster/models.py:84
 msgid "Photos"
 msgstr "Zdjęcia"
 
-#: poster/forms.py:39
+#: poster/forms.py:52
 #, fuzzy
 #| msgid "Choose photo owner"
 msgid "Choose photos"
 msgstr "Wybierz kto wykonał zdjęcie"
 
-#: poster/forms.py:43
+#: poster/forms.py:56
 #, fuzzy
 #| msgid "Enter primary phone number"
 msgid "Username / email / primary phone number"
 msgstr "Podaj główny numer telefonu"
 
-#: poster/forms.py:48 poster/forms.py:74 poster/forms.py:100
-#: poster/forms.py:113
+#: poster/forms.py:61 poster/forms.py:87 poster/forms.py:113
+#: poster/forms.py:126
 msgid "Password"
 msgstr "Hasło"
 
-#: poster/forms.py:49 poster/forms.py:75 poster/forms.py:101
-#: poster/forms.py:114
+#: poster/forms.py:62 poster/forms.py:88 poster/forms.py:114
+#: poster/forms.py:127
 msgid "Repeat password"
 msgstr "Powtórzenie hasła"
 
-#: poster/forms.py:57 poster/forms.py:83 poster/forms.py:109
+#: poster/forms.py:70 poster/forms.py:96 poster/forms.py:122
 msgid "Password was repeated wrongly"
 msgstr "Hasło błędnie powtórzono"
 
-#: poster/forms.py:61 poster/forms.py:87
+#: poster/forms.py:74 poster/forms.py:100
 #, fuzzy
 #| msgid "User"
 msgid "Username"
 msgstr "Użytkownik"
 
-#: poster/forms.py:63 poster/forms.py:89
+#: poster/forms.py:76 poster/forms.py:102
 #, fuzzy
 #| msgid "Short name"
 msgid "First name"
 msgstr "Skrócona nazwa"
 
-#: poster/forms.py:64 poster/forms.py:90
+#: poster/forms.py:77 poster/forms.py:103
 #, fuzzy
 #| msgid "Short name"
 msgid "Last name"
 msgstr "Skrócona nazwa"
 
-#: poster/forms.py:65 poster/forms.py:91
+#: poster/forms.py:78 poster/forms.py:104
 msgid "Email"
 msgstr "Email"
 
-#: poster/forms.py:66 poster/forms.py:92 poster/models.py:13
+#: poster/forms.py:79 poster/forms.py:105 poster/models.py:13
 msgid "Phone number"
 msgstr "Numer telefonu"
 
-#: poster/forms.py:68 poster/forms.py:94 poster/models.py:16
+#: poster/forms.py:81 poster/forms.py:107 poster/models.py:16
 msgid "Phone number additional"
 msgstr "Dodatkowy numer telefonu"
 
-#: poster/forms.py:69 poster/forms.py:95
+#: poster/forms.py:82 poster/forms.py:108
 msgid "Country"
 msgstr "Kraj"
 
-#: poster/forms.py:70 poster/forms.py:96 poster/models.py:21
+#: poster/forms.py:83 poster/forms.py:109 poster/models.py:21
 #: poster/models.py:95
 msgid "Choose region"
 msgstr "Wybierz region/województwo"
 
-#: poster/forms.py:71 poster/forms.py:97 poster/models.py:23
+#: poster/forms.py:84 poster/forms.py:110 poster/models.py:23
 #: poster/models.py:91
 msgid "City"
 msgstr "Miasto"
 
-#: poster/forms.py:72 poster/forms.py:98 poster/models.py:26
+#: poster/forms.py:85 poster/forms.py:111 poster/models.py:26
 #: poster/models.py:97
 msgid "ZIP code"
 msgstr "Kod pocztowy"
 
-#: poster/forms.py:73 poster/forms.py:99
+#: poster/forms.py:86 poster/forms.py:112
 msgid "Street, house and flat no."
 msgstr "Ulica, nr domu i mieszkania"
 
@@ -258,7 +288,8 @@ msgstr "Witaj w apce MaterialCleaner"
 
 #: poster/templates/index.html:10
 msgid "Make money, save envirnoment and ... clean your construction site!"
-msgstr "Zdobądź fundusze, zatroszcz się o środowisko i ... posprzątaj Twoją budowę!"
+msgstr ""
+"Zdobądź fundusze, zatroszcz się o środowisko i ... posprzątaj Twoją budowę!"
 
 #: poster/templates/login.html:5
 #, fuzzy
